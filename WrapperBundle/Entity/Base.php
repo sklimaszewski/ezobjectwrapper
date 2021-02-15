@@ -6,5 +6,4 @@ use Kaliop\eZObjectWrapperBundle\Core\Entity as BaseEntity;
 
 class Base extends BaseEntity
 {
-
 }

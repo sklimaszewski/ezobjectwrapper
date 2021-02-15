@@ -8,7 +8,7 @@ use eZ\Publish\API\Repository\Repository as eZRepository;
 use Kaliop\eZObjectWrapperBundle\Core\Traits\LoggingEntity;
 use Kaliop\eZObjectWrapperBundle\Core\Traits\EntityManagerAwareEntity;
 
-class Entity implements EntityInterface
+abstract class Entity implements EntityInterface
 {
     use LoggingEntity;
     use EntityManagerAwareEntity;

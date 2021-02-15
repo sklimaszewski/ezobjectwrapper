@@ -7,7 +7,11 @@ ezobject_wrapper:
     # When unset, \Kaliop\eZObjectWrapperBundle\Repository\Base is used
     default_repository_class: \Acme\AcmeBundle\Repository\Default
 
-    # A list of class names used to implement wrapper repos for specific content types.
+    # When using annotations for entities
+    mappings:
+        - '%kernel.project_dir%/src/Entity'
+
+    # If not using annotations - a list of class names used to implement wrapper repos for specific content types.
     class_map:
         article: \Acme\AcmeBundle\Repository\Article
 

@@ -29,7 +29,7 @@ class EntityManager
      * @param array $classMap array of classes exposing a RepositoryInterface
      * @param RepositoryManagerInterface[] $serviceMap array of services exposing a RepositoryInterface
      */
-    public function __construct(eZRepository $repository, array $classMap=array(), array $serviceMap=array())
+    public function __construct(eZRepository $repository, array $classMap = array(), array $serviceMap = array())
     {
         $this->repository = $repository;
         foreach ($classMap as $contentTypeIdentifier => $className) {

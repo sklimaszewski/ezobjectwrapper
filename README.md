@@ -99,7 +99,10 @@ Let's imagine you want to handle the 'newsletter' content type.
     ```php
     namespace Acme\AcmeBundle\Entity;
     use Kaliop\eZObjectWrapperBundle\Core\Entity as BaseEntity;
-
+   
+    /**
+     * @WrapperEntity(contentType="newsletter", repositoryClass="Acme\AcmeBundle\Repository\Newsletter")
+     */
     class Newsletter extends BaseEntity
     {
     }
@@ -109,15 +112,17 @@ Let's imagine you want to handle the 'newsletter' content type.
 
     ```php
     namespace Acme\AcmeBundle\Repository;
-    use Kaliop\eZObjectWrapperBundle\Core\Repository as BaseRepository;
-
-    class Newsletter extends BaseRepository
+   
+    use Acme\AcmeBundle\Entity\Newsletter as NewsletterEntity;
+    use Kaliop\eZObjectWrapperBundle\Repository\AbstractRepository;
+   
+    class Newsletter extends AbstractRepository
     {
-        protected $entityClass = '\Acme\AcmeBundle\Entity\Newsletter';
+        protected $entityClass = NewsletterEntity::class;
     }
     ```
 
-3. Register the Repository with the Entity Manager
+3. (Optionaly if not using annotations) register the Repository with the Entity Manager
 
     ```yml
     ezobject_wrapper:
@@ -138,14 +143,15 @@ Let's imagine you want to handle the 'newsletter' content type.
 
     ```php
     namespace Acme\AcmeBundle\Repository;
+   
     use ...;
 
-    class Newsletter extends BaseRepository
+    class Newsletter extends AbstractRepository
     {
-        protected $entityClass = '\Acme\AcmeBundle\Entity\Newsletter';
+        protected $entityClass = NewsletterEntity::class;
 
         /**
-         * @return \Acme\AcmeBundle\Entity\Newsletter[]
+         * @return NewsletterEntity[]
          */
         public function getAllNewsletters()
         {
@@ -155,7 +161,7 @@ Let's imagine you want to handle the 'newsletter' content type.
                 new Criterion\Subtree('/1/2/212') // root node where all newsletters are located
             ));
             $query->performCount = false;
-            $query->limit = PHP_INT_MAX-1;
+            $query->limit = AbstractRepository::SOLR_INT_MAX;
             $query->offset = 0;
             // A helper method made available from the base repository class
             return $this->loaddEntitiesFromSearchResults(
