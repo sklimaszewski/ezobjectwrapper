@@ -28,7 +28,7 @@ class Configuration implements ConfigurationInterface
                 ->end()
                 ->arrayNode('mappings')
                     ->defaultValue(array())
-                    ->info('???')
+                    ->info('A list of paths used for storing entities with a configuration done via annotations')
                     ->prototype('scalar')->end()
                 ->end()
                 ->arrayNode('class_map')
