@@ -2,13 +2,14 @@
 
 namespace Kaliop\eZObjectWrapperBundle\DependencyInjection;
 
+use Kaliop\eZObjectWrapperBundle\Core\EntityManager;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\Reference;
 
 class TaggedServicesCompilerPass implements CompilerPassInterface
 {
-    protected $entityManagerService = 'ezobject_wrapper.entity_manager';
+    protected $entityManagerService = EntityManager::class;
 
     public function process(ContainerBuilder $container)
     {

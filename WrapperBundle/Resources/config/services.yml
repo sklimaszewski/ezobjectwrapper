@@ -1,11 +1,10 @@
 parameters:
-    ezobject_wrapper.entity_manager.class: Kaliop\eZObjectWrapperBundle\Core\EntityManager
     ezobject_wrapper.repository.abstract.class: Kaliop\eZObjectWrapperBundle\Core\Repository
 
 services:
 
-    ezobject_wrapper.entity_manager:
-        class: '%ezobject_wrapper.entity_manager.class%'
+    Kaliop\eZObjectWrapperBundle\Core\EntityManager:
+        public: true
         arguments:
           - '@ezpublish.api.repository'
           # map of fieldtypes => classes implementing RepositoryInterface. The repos will be created on the fly by the EM.
@@ -26,6 +25,3 @@ services:
             - '@ezpublish.view_manager'
         tags:
             - { name: twig.extension }
-
-    # autowiring
-    Kaliop\eZObjectWrapperBundle\Core\EntityManager: '@ezobject_wrapper.entity_manager'

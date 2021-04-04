@@ -6,7 +6,7 @@ class RepositoryTest extends BaseTest
 {
     public function testLoadByLocationId()
     {
-        $entityManager = $this->container->get('ezobject_wrapper.entity_manager');
+        $entityManager = $this->container->get(\Kaliop\eZObjectWrapperBundle\Core\EntityManager::class);
         $repo = $entityManager->getRepository('any');
 
         $e2 = $repo->loadEntityFromLocationId($this->rootEntity->location()->id);
@@ -15,7 +15,7 @@ class RepositoryTest extends BaseTest
 
     public function testLoadByRemoteId()
     {
-        $entityManager = $this->container->get('ezobject_wrapper.entity_manager');
+        $entityManager = $this->container->get(\Kaliop\eZObjectWrapperBundle\Core\EntityManager::class);
         $repo = $entityManager->getRepository('any');
 
         $e2 = $repo->loadEntityFromContentRemoteId($this->rootEntity->content()->contentInfo->remoteId);

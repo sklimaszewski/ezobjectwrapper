@@ -4,7 +4,7 @@ services:
         parent: ezobject_wrapper.repository.abstract
         arguments:
             - '@ezpublish.api.repository'
-            - '@ezobject_wrapper.entity_manager'
+            - '@Kaliop\eZObjectWrapperBundle\Core\EntityManager'
         calls:
             - [ setRichTextConverter, [ '@ezpublish.fieldType.ezxmltext.converter.html5' ] ]
             - [ setRouter, [ '@router' ] ]

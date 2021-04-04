@@ -25,7 +25,7 @@ services:
         parent: ezobject_wrapper.repository.abstract
         arguments:
             - '@ezpublish.api.repository'
-            - '@ezobject_wrapper.entity_manager'
+            - '@Kaliop\eZObjectWrapperBundle\Core\EntityManager'
             # Injecting some settings to our custom repository class. E.g. the root path where to fetch entities from
             - { newsletter_location_path: '%newsletter_location_path%' }
         tags:

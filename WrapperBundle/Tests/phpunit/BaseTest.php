@@ -14,7 +14,7 @@ abstract class BaseTest extends WebTestCase
     protected function setUp()
     {
         $this->container = $this->getContainer();
-        $entityManager = $this->container->get('ezobject_wrapper.entity_manager');
+        $entityManager = $this->container->get(\Kaliop\eZObjectWrapperBundle\Core\EntityManager::class);
 
         $rootContentId = $this->container->get('ezpublish.api.repository')->getLocationService()->loadLocation(2)->contentInfo->id;
         $this->rootEntity = $entityManager->find('any', $rootContentId);

@@ -3,6 +3,7 @@
 namespace Kaliop\eZObjectWrapperBundle\DependencyInjection;
 
 use Doctrine\Common\Annotations\AnnotationReader;
+use Kaliop\eZObjectWrapperBundle\Core\EntityManager;
 use Kaliop\eZObjectWrapperBundle\Core\Mapping\Entity;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;
@@ -17,7 +18,7 @@ use Symfony\Component\Config\Definition\Exception\InvalidConfigurationException;
  */
 class KaliopeZObjectWrapperExtension extends Extension
 {
-    protected $entityManagerService = 'ezobject_wrapper.entity_manager';
+    protected $entityManagerService = EntityManager::class;
 
     public function getAlias()
     {

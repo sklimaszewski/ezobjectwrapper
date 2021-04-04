@@ -9,7 +9,7 @@ class EntityTest extends BaseTest
 
     protected function getEntityByRemoteId($remoteId)
     {
-        $entityManager = $this->container->get('ezobject_wrapper.entity_manager');
+        $entityManager = $this->container->get(\Kaliop\eZObjectWrapperBundle\Core\EntityManager::class);
         $testContent = $this->container->get('ezpublish.api.repository')->getContentService()->loadContentByRemoteId($remoteId);
         return $entityManager->Load($testContent);
     }
@@ -19,7 +19,7 @@ class EntityTest extends BaseTest
         $contentTypeService = $this->container->get('ezpublish.api.repository')->getContentTypeService();
         $contentTypeIdentifier = $contentTypeService->loadContentType($this->rootEntity->content()->contentInfo->contentTypeId)->identifier;
 
-        $entityManager = $this->container->get('ezobject_wrapper.entity_manager');
+        $entityManager = $this->container->get(\Kaliop\eZObjectWrapperBundle\Core\EntityManager::class);
         $entityManager->registerClass('Test\TestRepository', $contentTypeIdentifier);
 
         $e2 = $entityManager->find($contentTypeIdentifier, $this->rootEntity->content()->id);

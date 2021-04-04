@@ -66,7 +66,7 @@ new \Kaliop\eZObjectWrapperBundle\KaliopeZObjectWrapperBundle(),
 ### Retrieving Entities
 
 ```php
-$entityManager = $this->container->get('ezobject_wrapper.entity_manager');
+$entityManager = $this->container->get(\Kaliop\eZObjectWrapperBundle\Core\EntityManager::class);
 $repository = $entityManager->getRepository('article');
 $articleEntity = $repository->loadEntityFromLocationId(2);
 echo 'Article entity 2 is named: ' . $articleEntity->content()->contentInfo->name;
@@ -135,7 +135,7 @@ Let's imagine you want to handle the 'newsletter' content type.
 4. Test that it works
 
     ```php
-    $entityManager = $this->container->get('ezobject_wrapper.entity_manager');
+    $entityManager = $this->container->get(\Kaliop\eZObjectWrapperBundle\Core\EntityManager::class);
     $repository = $entityManager->getRepository('newsletter');
     ```
 
@@ -218,7 +218,7 @@ services:
         parent: ezobject_wrapper.repository.abstract
         arguments:
             - @ezpublish.api.repository
-            - @ezobject_wrapper.entity_manager
+            - @Kaliop\eZObjectWrapperBundle\Core\EntityManager
         calls:
             # Injecting some settings to our custom repository class. E.g. the root path of newsletter contents
             - [ setSettings, [ { newsletter_location_path: %newsletter_location_path% } ] ]
@@ -323,7 +323,7 @@ services:
         parent: ezobject_wrapper.repository.abstract
         arguments:
             - @ezpublish.api.repository
-            - @ezobject_wrapper.entity_manager
+            - @Kaliop\eZObjectWrapperBundle\Core\EntityManager
         calls:
             - [ setRouter, [ '@router' ] ]
         tags:
@@ -367,7 +367,7 @@ services:
         parent: ezobject_wrapper.repository.abstract
         arguments:
             - @ezpublish.api.repository
-            - @ezobject_wrapper.entity_manager
+            - @Kaliop\eZObjectWrapperBundle\Core\EntityManager
         calls:
             - [ setRichTextConverter, [ '@ezpublish.fieldType.ezxmltext.converter.html5' ] ]
         tags:
