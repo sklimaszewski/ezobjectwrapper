@@ -36,7 +36,6 @@ abstract class AbstractRepository extends Repository
             new Criterion\Subtree('/1/2/'),
             new Criterion\Visibility(Criterion\Visibility::VISIBLE),
         ]);
-        $query->performCount = false;
         $query->limit = self::SOLR_INT_MAX - 1;
         $query->offset = 0;
         $query->sortClauses = $sortClauses;
@@ -89,7 +88,6 @@ abstract class AbstractRepository extends Repository
             new Criterion\Visibility(Criterion\Visibility::VISIBLE),
         ]);
 
-        $query->performCount = false;
         $query->limit = $limit ? $limit : self::SOLR_INT_MAX - 1;
         $query->offset = $offset;
         $query->sortClauses = $sortClauses ? $sortClauses : $parentLocation->getSortClauses();
@@ -138,7 +136,6 @@ abstract class AbstractRepository extends Repository
             new Criterion\Visibility(Criterion\Visibility::VISIBLE),
         ]);
 
-        $query->performCount = false;
         $query->limit = $limit ? $limit : self::SOLR_INT_MAX - 1;
         $query->offset = $offset;
 
